@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import {
   Box,
   Button,
@@ -12,6 +13,7 @@ import {
 import { SideBar } from "../../components/SideBar";
 import { Input } from "../../components/Form/Input";
 import { Header } from "../../components/Header";
+
 export default function CreateUser() {
   return (
     <Box>
@@ -46,8 +48,12 @@ export default function CreateUser() {
 
           <Flex mt="8" justify="flex-end">
             <HStack>
-              <Button colorScheme="whiteAlpha">Cancelar</Button>
-              <Button colorScheme="pink">Cancelar</Button>
+              <Link href="/users" passHref>
+                <Button as="a" colorScheme="whiteAlpha">
+                  Cancelar
+                </Button>
+              </Link>
+              <Button colorScheme="pink">Salvar</Button>
             </HStack>
           </Flex>
         </Box>
