@@ -9,9 +9,9 @@ import {
   SimpleGrid,
   VStack,
 } from "@chakra-ui/react";
-import { Header } from "../../components/Header";
 import { SideBar } from "../../components/SideBar";
 import { Input } from "../../components/Form/Input";
+import { Header } from "../../components/Header";
 export default function CreateUser() {
   return (
     <Box>

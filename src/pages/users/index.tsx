@@ -14,10 +14,10 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import { Header } from "../../components/Header";
 import { SideBar } from "../../components/SideBar";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
 import { Pagination } from "../../components/Pagination";
+import { Header } from "../../components/Header";
 
 export default function UsersList() {
   return (
