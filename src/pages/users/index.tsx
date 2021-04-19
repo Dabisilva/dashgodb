@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import {
@@ -27,6 +28,17 @@ export default function UsersList() {
     lg: true,
   });
 
+  function getUsersList() {
+    fetch("htpp://localhost:3000/api/users")
+      .then((response) => {
+        response.json();
+      })
+      .then((data) => console.log(data));
+  }
+
+  useEffect(() => {
+    getUsersList();
+  }, []);
   return (
     <Box>
       <Head>
