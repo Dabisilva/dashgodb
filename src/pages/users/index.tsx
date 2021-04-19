@@ -21,15 +21,9 @@ import { SideBar } from "../../components/SideBar";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
 import { Header } from "../../components/Header";
 import { Pagination } from "../../components/Pagination/Index";
-import { useQuery } from "react-query";
-
+import { useUsers } from "../../services/hooks/useUsers";
 export default function UsersList() {
-  const { data, isLoading, error } = useQuery("users", async () => {
-    const response = await fetch("htpp://localhost:3000/api/users");
-    const data = response.json();
-
-    return data;
-  });
+  const { data, isLoading, isFetching, error } = useUsers();
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -48,6 +42,9 @@ export default function UsersList() {
           <Flex mb="8" justify="space-between" align="center">
             <Heading size="lg" fontWeight="normal">
               Usuários
+              {!isLoading && isFetching && (
+                <Spinner size="sm" color="gray.500" ml="4" />
+              )}
             </Heading>
 
             <Link href="/users/create" passHref>
@@ -86,7 +83,7 @@ export default function UsersList() {
                 </Thead>
 
                 <Tbody>
-                  {data.users.map((user) => {
+                  {data.map((user) => {
                     return (
                       <Tr key={user.id}>
                         <Td px={["4", "4", "6"]}>
@@ -100,18 +97,7 @@ export default function UsersList() {
                             </Text>
                           </Box>
                         </Td>
-                        {isWideVersion && (
-                          <Td>
-                            {new Date(user.createdAt).toLocaleDateString(
-                              "pt-BR",
-                              {
-                                day: "2-digit",
-                                month: "long",
-                                year: "numeric",
-                              }
-                            )}
-                          </Td>
-                        )}
+                        {isWideVersion && <Td>{user.createdAt}</Td>}
                         <Td>
                           <Button
                             as="a"
